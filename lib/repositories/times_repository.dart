@@ -1,6 +1,8 @@
 import 'dart:collection';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteraula04/database/db.dart';
+import 'package:flutteraula04/database/db_firestore.dart';
 import 'package:flutteraula04/models/time.dart';
 import 'package:flutteraula04/models/titulo.dart';
 
@@ -50,35 +52,65 @@ Color _parseColor(String? colorString) {
 }
 
   // Método para buscar os títulos de um time específico
-  Future<List<Titulo>> _fetchTitulos(int timeId) async {
-    var db = await DB.get();
-    List<Map<String, dynamic>> results = await db.query(
-      'titulos',
-      where: 'time_id = ?',
-      whereArgs: [timeId],
-    );
+  // Future<List<Titulo>> _fetchTitulos(int timeId) async {
+  //   var db = await DB.get();
+  //   List<Map<String, dynamic>> results = await db.query(
+  //     'titulos',
+  //     where: 'time_id = ?',
+  //     whereArgs: [timeId],
+  //   );
 
-    return results
-        .map(
-          (tituloData) => Titulo(
-            id: tituloData['id'],
-            campeonato: tituloData['campeonato'],
-            ano: tituloData['ano'],
-          ),
-        )
-        .toList();
+  //   return results
+  //       .map(
+  //         (tituloData) => Titulo(
+  //           id: tituloData['id'],
+  //           campeonato: tituloData['campeonato'],
+  //           ano: tituloData['ano'],
+  //         ),
+  //       )
+  //       .toList();
+  // }
+
+
+  // Método para buscar os títulos de um time específico no Firebase
+  Future<List<Titulo>> _fetchTitulos(int timeId) async {
+    try {
+      // Obtém a instância do Firestore
+      FirebaseFirestore db = await DBFirestore.get();
+  
+      // Consulta os títulos no Firestore com base no timeId
+      QuerySnapshot querySnapshot = await db
+          .collection('titulos')
+          .where('time_id', isEqualTo: timeId)
+          .get();
+  
+      // Mapeia os documentos retornados para a lista de objetos Titulo
+      return querySnapshot.docs.map((doc) {
+        var data = doc.data() as Map<String, dynamic>;
+        return Titulo(
+          id: doc.id, // O ID do documento no Firestore
+          campeonato: data['campeonato'],
+          ano: data['ano'],
+        );
+      }).toList();
+    } catch (e) {
+      debugPrint('Erro ao buscar títulos do Firebase: $e');
+      return []; // Retorna uma lista vazia em caso de erro
+    }
   }
 
   // Método para adicionar um título a um time específico
   Future<void> addTitulo({required Time time, required Titulo titulo}) async {
-    var db = await DB.get();
-    int id = await db.insert('titulos', {
-      'campeonato': titulo.campeonato,
+
+
+    FirebaseFirestore db = await DBFirestore.get();
+    var docRef = await db.collection('titulos').add({
+            'campeonato': titulo.campeonato,
       'ano': titulo.ano,
       'time_id': time.id,
     });
 
-    titulo.id = id;
+    titulo.id = docRef.id;
     time.titulos.add(titulo);
     notifyListeners();
   }
@@ -89,16 +121,14 @@ Color _parseColor(String? colorString) {
     required String ano,
     required String campeonato,
   }) async {
-    var db = await DB.get();
-    await db.update(
-      'titulos',
-      {
+  
+
+    FirebaseFirestore db = await DBFirestore.get();
+
+    await db.collection('titulos').doc(titulo.id).update({
         'campeonato': campeonato,
         'ano': ano,
-      },
-      where: 'id = ?',
-      whereArgs: [titulo.id],
-    );
+    });
 
     titulo
       ..ano = ano
