@@ -22,7 +22,7 @@ class AutenticacaoController extends GetxController {
       titulo.value = visible ? 'Bem vindo' : 'Crie sua conta';
       botaoPrincipal.value = visible ? 'Entrar' : 'Registre-se';
       appBarButton.value = visible ? 'Cadastre-se' : 'Login';
-     // formKey.currentState.reset();
+     formKey.currentState?.reset();
     });
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutteraula04/configuracao/config.dart';
+import 'package:flutteraula04/widgets/checkauth.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:flutteraula04/repositories/times_repository.dart';
@@ -6,7 +8,8 @@ import 'controllers/theme_controller.dart';
 import 'pages/home_page.dart';
 
 
-void main() {
+void main() async{
+  await initConfigurations();
   // Inicializando o ThemeController com Get.lazyPut
   Get.lazyPut<ThemeController>(() => ThemeController());
 
@@ -50,7 +53,7 @@ class MeuAplicativo extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const HomePage(),
+      home: const CheckAuth(),
       
     );
   }

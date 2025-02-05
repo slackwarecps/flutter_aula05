@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteraula04/service/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutteraula04/models/time.dart';
@@ -40,7 +41,15 @@ class _HomePageState extends State<HomePage> {
               : const Icon(Icons.brightness_2)),
               title: Obx(() => controller.isDark.value? const Text('Light'):const Text('Dark'),),
               onTap: ()=> controller.changeTheme(),
-            ))
+            )),
+                   PopupMenuItem(child: ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Sair'),
+              onTap: () {
+                Navigator.pop(context);
+                AuthService.to.logout();
+              },
+            )),
           ],)
         ],
       ),
