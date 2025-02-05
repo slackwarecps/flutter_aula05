@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutteraula04/pages/autenticacao_controller.dart';
+import 'package:flutteraula04/controllers/autenticacao_controller.dart';
 import 'package:get/get.dart';
 
 class AutenticacaoPage extends StatelessWidget {

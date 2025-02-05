@@ -2,54 +2,70 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
 
 class ThemeController extends GetxController {
-  // Observável para o estado do tema
-  final isDark = false.obs;
+  // Estado reativo para o tema
+  var isDark = false.obs;
 
-  // Mapeamento de modos de tema
+  // Mapeamento de temas
   final Map<String, ThemeMode> themeModes = {
     'light': ThemeMode.light,
     'dark': ThemeMode.dark,
   };
 
-  // Instância de SharedPreferences
-  //late SharedPreferences _prefs;
+  // Caixa do Hive para persistência
+  late Box _preferencesBox;
 
   // Singleton para acessar o controlador
   static ThemeController get to => Get.find();
 
-  // Método para carregar o modo de tema salvo
+  @override
+  void onInit() {
+    super.onInit();
+    _initializeHiveBox();
+  }
+
+  // Inicializa a caixa do Hive
+  Future<void> _initializeHiveBox() async {
+    try {
+      Directory dir = await getApplicationDocumentsDirectory();
+      _preferencesBox = await Hive.openBox('preferencias', path: dir.path);
+      await loadThemeMode();
+    } catch (e) {
+      print('Erro ao inicializar o Hive: $e');
+    }
+  }
+
+  // Carrega o tema salvo
   Future<void> loadThemeMode() async {
-    // _prefs = await SharedPreferences.getInstance();
-    // final themeText = _prefs.getString('theme') ?? 'light';
-
-    //hive
-    Directory dir = await getApplicationDocumentsDirectory();
-    var box = await Hive.openBox('preferencias', path: dir.path);
-    String themeText = box.get('theme') ?? 'light';
-
-    isDark.value = themeText == 'dark'?true:false;
-    await _setMode(themeText);
+    try {
+      String themeText = _preferencesBox.get('theme') ?? 'light';
+      isDark.value = themeText == 'dark';
+      setMode(themeText);
+    } catch (e) {
+      print('Erro ao carregar o tema: $e');
+    }
   }
 
-  // Método para alterar o modo de tema
-  Future<void> _setMode(String themeText) async {
-    final themeMode = themeModes[themeText] ?? ThemeMode.light;
-    Get.changeThemeMode(themeMode);
-    var box = await Hive.openBox('preferencias');
-    await box.put('theme',themeText);
-   // await _prefs.setString('theme', themeText);
+  // Define o modo de tema
+  Future<void> setMode(String themeText) async {
+    try {
+      ThemeMode? themeMode = themeModes[themeText];
+      if (themeMode != null) {
+        Get.changeThemeMode(themeMode);
+        await _preferencesBox.put('theme', themeText);
+      }
+    } catch (e) {
+      print('Erro ao definir o tema: $e');
+    }
   }
 
-  // Método para alternar entre os temas
-  Future<void> changeTheme() async {
+  // Alterna entre os temas claro e escuro
+  void changeTheme() {
     final newTheme = isDark.value ? 'light' : 'dark';
-  
-    await _setMode(newTheme);
-      isDark.value = !isDark.value;
+    isDark.value = !isDark.value;
+    setMode(newTheme);
   }
 }
