@@ -25,7 +25,7 @@ class AutenticacaoPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
+        child: Obx( ()=>controller.isLoading.value ? const Center(child: CircularProgressIndicator(),):  Form(
           key: controller.formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +49,8 @@ class AutenticacaoPage extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira uma senha';
+                  }else if(value.length <6){
+                    return 'Sua senha deve ter no minimo 6 caracteres';
                   }
                   return null;
                 },
@@ -73,6 +75,7 @@ class AutenticacaoPage extends StatelessWidget {
                   )),
             ],
           ),
+        ),
         ),
       ),
     );
