@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteraula04/service/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutteraula04/models/time.dart';
@@ -60,7 +61,13 @@ tituloPage(){
                   width: 250,
                 ),
               ),
-              Text('Pontos: ${widget.time.pontos}',style: const TextStyle(fontSize: 22),)
+              Text(
+                'Pontos: ${widget.time.pontos}',
+              style: const TextStyle(fontSize: 22),
+              ),
+                Text(
+                AuthService.to.user?.email ?? 'Email não disponível',
+              )
             ],
           ),
           _buildTitulosTab(),
