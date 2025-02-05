@@ -1,8 +1,8 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:flutter_aula04/database/db.dart';
-import 'package:flutter_aula04/models/time.dart';
-import 'package:flutter_aula04/models/titulo.dart';
+import 'package:flutteraula04/database/db.dart';
+import 'package:flutteraula04/models/time.dart';
+import 'package:flutteraula04/models/titulo.dart';
 
 class TimesRepository extends ChangeNotifier {
   // Lista privada e imutável para proteger os dados

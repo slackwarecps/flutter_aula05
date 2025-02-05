@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_aula04/models/time.dart';
-import 'package:flutter_aula04/pages/time_page.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
-import 'package:flutter_aula04/widgets/brasao.dart';
+import 'package:flutteraula04/models/time.dart';
+import 'package:flutteraula04/pages/time_page.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
+import 'package:flutteraula04/widgets/brasao.dart';
 import '../controllers/theme_controller.dart';
 import 'home_controller.dart';
 
@@ -33,12 +33,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color.fromARGB(255, 40, 239, 9),
         title: const Text('Brasileirao Aula 05'),
         actions: [
-          PopupMenuButton(icon:Icon(Icons.more_vert),itemBuilder: (_)=>[
+          PopupMenuButton(icon:const Icon(Icons.more_vert),itemBuilder: (_)=>[
             PopupMenuItem(child: ListTile(
               leading: Obx(()=> controller.isDark.value 
-              ? Icon(Icons.brightness_7)
-              : Icon(Icons.brightness_2)),
-              title: Obx(() => controller.isDark.value? Text('Light'):Text('Dark'),),
+              ? const Icon(Icons.brightness_7)
+              : const Icon(Icons.brightness_2)),
+              title: Obx(() => controller.isDark.value? const Text('Light'):const Text('Dark'),),
               onTap: ()=> controller.changeTheme(),
             ))
           ],)

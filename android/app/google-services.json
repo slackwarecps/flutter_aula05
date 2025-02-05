@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828276794494",
+    "project_id": "flutteraula04",
+    "storage_bucket": "flutteraula04.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828276794494:android:7fd482cf4b735416dda42f",
+        "android_client_info": {
+          "package_name": "br.com.fabioalvaro.flutteraula04"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLisuq9tWPg8mhfdieUnYBHRfNq2maaKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

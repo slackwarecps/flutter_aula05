@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
 import 'controllers/theme_controller.dart';
 import 'pages/home_page.dart';
 

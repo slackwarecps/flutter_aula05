@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_aula04/models/time.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
+import 'package:flutteraula04/models/time.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
 import '../models/titulo.dart';
 
 // Pagina/Componente Visual

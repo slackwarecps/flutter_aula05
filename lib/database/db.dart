@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
-import 'package:flutter_aula04/models/time.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
+import 'package:flutteraula04/models/time.dart';
 
 
 class DB {

@@ -1,4 +1,4 @@
-package br.com.fabioalvaro.flutter_aula04
+package br.com.fabioalvaro.flutteraula04
 
 import io.flutter.embedding.android.FlutterActivity
 

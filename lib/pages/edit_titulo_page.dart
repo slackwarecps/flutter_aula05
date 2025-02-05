@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_aula04/models/titulo.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
+import 'package:flutteraula04/models/titulo.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
 
 class EditTituloPage extends StatefulWidget {
   Titulo titulo;

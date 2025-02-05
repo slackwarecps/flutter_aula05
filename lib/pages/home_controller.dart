@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter_aula04/models/time.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
+import 'package:flutteraula04/models/time.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
 
 class HomeController {
   // Tornar a variável `timesRepository` final para indicar que ela não será reatribuída após a inicialização.

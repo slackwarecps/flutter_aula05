@@ -4,7 +4,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_aula04/models/titulo.dart';
+import 'package:flutteraula04/models/titulo.dart';
 
 class Time {
   int id;

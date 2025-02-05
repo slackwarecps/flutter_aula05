@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_aula04/models/time.dart';
-import 'package:flutter_aula04/pages/add_titulo_page.dart';
-import 'package:flutter_aula04/pages/edit_titulo_page.dart';
-import 'package:flutter_aula04/repositories/times_repository.dart';
-import 'package:flutter_aula04/widgets/brasao.dart';
+import 'package:flutteraula04/models/time.dart';
+import 'package:flutteraula04/pages/add_titulo_page.dart';
+import 'package:flutteraula04/pages/edit_titulo_page.dart';
+import 'package:flutteraula04/repositories/times_repository.dart';
+import 'package:flutteraula04/widgets/brasao.dart';
 
 class TimePage extends StatefulWidget {
   final Time time; // Tornar a variável `time` final para indicar que ela não será alterada após a inicialização.
