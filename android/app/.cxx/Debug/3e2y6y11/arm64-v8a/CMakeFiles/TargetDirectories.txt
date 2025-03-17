@@ -1,0 +1,2 @@
+/Users/fabioalvaropereira/workspaces/sisbe/flutter_aula05/android/app/.cxx/Debug/3e2y6y11/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/fabioalvaropereira/workspaces/sisbe/flutter_aula05/android/app/.cxx/Debug/3e2y6y11/arm64-v8a/CMakeFiles/rebuild_cache.dir

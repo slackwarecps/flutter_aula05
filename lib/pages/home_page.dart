@@ -7,7 +7,6 @@ import 'package:flutteraula04/pages/time_page.dart';
 import 'package:flutteraula04/repositories/times_repository.dart';
 import 'package:flutteraula04/widgets/brasao.dart';
 import '../controllers/theme_controller.dart';
-import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

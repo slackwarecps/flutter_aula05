@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:flutteraula04/repositories/times_repository.dart';
 import 'controllers/theme_controller.dart';
-import 'pages/home_page.dart';
 
 
 void main() async{
